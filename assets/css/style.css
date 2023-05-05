@@ -397,6 +397,39 @@ html {
   user-select: none;
 }
 
+.courses__section .courses__container .course__card .fa-lock {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2rem;
+  color: var(--chinese-black);
+}
+
+.courses__section .courses__container .course__card.locked {
+  cursor: default;
+}
+
+.courses__section .courses__container .course__card:hover.locked {
+  outline: 2px solid rgba(0, 0, 0, 0.15);
+}
+
+.courses__section .courses__container .course__card:hover.locked img {
+  opacity: 0.3;
+}
+
+.courses__section .courses__container .course__card.locked .num,
+.courses__section .courses__container .course__card.locked .course__name,
+.courses__section .courses__container .course__card.locked img {
+  -webkit-filter: blur(2px);
+  filter: blur(2px);
+}
+
+.courses__section .courses__container .course__card.locked .fa-lock {
+  display: block;
+}
+
 .courses__section .courses__container .course__card:hover {
   outline: 2px solid var(--eerie-black);
 }
