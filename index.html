@@ -1,0 +1,220 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Learn English</title>
+
+    <!-- custom css -->
+    <link rel="stylesheet" href="./assets/css/style.css" />
+
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lobster+Two:ital,wght@0,400;0,700;1,400;1,700&family=Open+Sans:wght@300;400;500;600;700;800&family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- header -->
+    <div class="header">
+      <a href="./index.html" class="logo"
+        ><img src="./assets/images/logo.png" alt="logo"
+      /></a>
+
+      <ul class="navbar">
+        <li class="nav__item" data-open-loading>
+          <a href="./index.html">Home</a>
+        </li>
+        <li class="nav__item">
+          <a href="#courses__section">Courses</a>
+        </li>
+        <li class="nav__item" data-open-loading>
+          <a href="">Blog</a>
+        </li>
+        <li class="nav__item" data-open-loading>
+          <a href="">Contact us</a>
+        </li>
+        <li class="nav__item">
+          <button class="btn__search" data-modal-open="#modalSearch">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+        </li>
+      </ul>
+
+      <div class="menu__btn" data-modal-open="#mobMenu">
+        <i class="fa-solid fa-bars"></i>
+      </div>
+    </div>
+
+    <!-- mobile menu -->
+    <div class="mob__menu modal" id="mobMenu">
+      <a href="./index.html" class="logo">
+        <img src="./assets/images/logo.png" alt="logo" />
+      </a>
+
+      <div class="close__mob__menu" data-close-modal>
+        <i class="fa fa-xmark"></i>
+      </div>
+
+      <ul class="navbar">
+        <li class="nav__item" data-open-loading>
+          <a href="./index.html">Home</a>
+        </li>
+        <li class="nav__item" data-close-modal>
+          <a href="#courses__section">Courses</a>
+        </li>
+        <li class="nav__item" data-open-loading>
+          <a href="">Blog</a>
+        </li>
+        <li class="nav__item" data-open-loading>
+          <a href="">Contact us</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="modal search__modal" id="modalSearch">
+      <div class="close__modal__search" data-close-modal>
+        <i class="fa fa-xmark"></i>
+      </div>
+
+      <form class="search__form">
+        <i class="fa fa-magnifying-glass"></i>
+        <input type="text" class="input__search" placeholder="Search..." />
+      </form>
+    </div>
+
+    <!-- hero -->
+    <section class="hero__section">
+      <div class="hero__text">
+        <h1 class="bg__text">Learn <span class="has-color">English,</span></h1>
+        <p class="sm__text">anytime and anywhere</p>
+        <a href="#courses__section" class="btn__explore">Explore Courses</a>
+      </div>
+
+      <div class="wave">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+          <path
+            fill="#1b1d20"
+            fill-opacity="1"
+            d="M0,224L1440,32L1440,320L0,320Z"
+          ></path>
+        </svg>
+      </div>
+
+      <div class="message__us">
+        <i class="fa-brands fa-facebook-messenger"></i>
+      </div>
+      <btn class="btn__message__us">
+        <i class="fa-brands fa-facebook-messenger"></i>
+        Message us
+      </btn>
+    </section>
+
+    <!-- courses  -->
+    <section class="courses__section" id="courses__section">
+      <div class="heading">
+        <div class="title">
+          What would you like to <span class="has-color">learn?</span>
+        </div>
+      </div>
+
+      <div class="courses__container">
+        <div
+          class="course__card"
+          id="1"
+          data-open-loading
+          data-target="./course.html"
+        >
+          <span class="num">01</span>
+          <div class="course__name">Vocabulary</div>
+          <img src="./assets/images/vocabulary.png" />
+          <a href="./course.html" class="btn__start__course">Start Learning</a>
+        </div>
+
+        <div
+          class="course__card"
+          id="2"
+          data-open-loading
+          data-target="./course.html"
+        >
+          <span class="num">02</span>
+          <div class="course__name">Grammar</div>
+          <img src="./assets/images/grammar.png" />
+          <button class="btn__start__course">Start Learning</button>
+        </div>
+
+        <div
+          class="course__card"
+          id="3"
+          data-open-loading
+          data-target="./course.html"
+        >
+          <span class="num">03</span>
+          <div class="course__name">Reading</div>
+          <img src="./assets/images/reading.png" />
+          <button class="btn__start__course">Start Learning</button>
+        </div>
+
+        <div
+          class="course__card"
+          id="4"
+          data-open-loading
+          data-target="./course.html"
+        >
+          <span class="num">04</span>
+          <div class="course__name">Conversation</div>
+          <img src="./assets/images/conversation.png" />
+          <button class="btn__start__course">Start Learning</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- loading -->
+    <div class="loading modal" id="loadingModal" data-loading>
+      <div class="loader">
+        <p>Please wait ...</p>
+        <div class="progress">
+          <div class="progress__full"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- overlay -->
+    <div class="overlay" data-overlay></div>
+
+    <!-- footer -->
+    <section class="footer">
+      <div class="footer__container">
+        <div class="copyright">
+          <p>
+            Copyrights&copy;
+            <script>
+              let date = new Date();
+              document.write(date.getFullYear());
+            </script>
+            All rights reserved.
+          </p>
+        </div>
+
+        <div class="developer">
+          <p>
+            Designed and Developed with
+            <i class="fa fa-heart" style="color: red"></i> by:
+            <a href="">Shahid Ullah (Safi)</a>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- font awesome -->
+    <script
+      src="https://kit.fontawesome.com/1daeea735e.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- custome js -->
+    <script src="./assets/js/main.js"></script>
+  </body>
+</html>

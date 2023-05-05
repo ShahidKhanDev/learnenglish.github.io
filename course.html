@@ -1,0 +1,244 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Learn English</title>
+
+    <!-- custom css -->
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <link rel="stylesheet" href="./assets/css/course.css" />
+
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lobster+Two:ital,wght@0,400;0,700;1,400;1,700&family=Open+Sans:wght@300;400;500;600;700;800&family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- header -->
+    <div class="header">
+      <a href="./index.html" class="logo"
+        ><img src="./assets/images/logo.png" alt="logo"
+      /></a>
+
+      <ul class="navbar">
+        <li class="nav__item" data-open-loading>
+          <a href="./index.html">Home</a>
+        </li>
+
+        <li class="nav__item" data-open-loading>
+          <a href="">Blog</a>
+        </li>
+        <li class="nav__item" data-open-loading>
+          <a href="">Contact us</a>
+        </li>
+        <li class="nav__item">
+          <button class="btn__search" data-modal-open="#modalSearch">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+        </li>
+      </ul>
+
+      <div class="menu__btn" data-modal-open="#mobMenu">
+        <i class="fa-solid fa-bars"></i>
+      </div>
+    </div>
+
+    <!-- mobile menu -->
+    <div class="mob__menu modal" id="mobMenu">
+      <a href="./index.html" class="logo">
+        <img src="./assets/images/logo.png" alt="logo" />
+      </a>
+
+      <div class="close__mob__menu" data-close-modal>
+        <i class="fa fa-xmark"></i>
+      </div>
+
+      <ul class="navbar">
+        <li class="nav__item" data-open-loading>
+          <a href="./index.html">Home</a>
+        </li>
+        <li class="nav__item" data-open-loading>
+          <a href="">Blog</a>
+        </li>
+        <li class="nav__item" data-open-loading>
+          <a href="">Contact us</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="modal search__modal" id="modalSearch">
+      <div class="close__modal__search" data-close-modal>
+        <i class="fa fa-xmark"></i>
+      </div>
+
+      <form class="search__form">
+        <i class="fa fa-magnifying-glass"></i>
+        <input type="text" class="input__search" placeholder="Search..." />
+      </form>
+    </div>
+
+    <!-- hero -->
+    <section class="hero__section">
+      <div class="hero__text hero__text__course">
+        <!-- <h1 class="bg__text bg__text__course">
+          <span>Read</span><img src="./assets/images/reading.png" /><span
+            class="has-color"
+            >ing</span
+          >
+        </h1>
+        <p class="sm__text">anytime and anywhere</p>
+        <a href="#courses__section" class="btn__explore">Explore Courses</a> -->
+      </div>
+
+      <div class="wave">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+          <path
+            fill="#1b1d20"
+            fill-opacity="1"
+            d="M0,224L1440,32L1440,320L0,320Z"
+          ></path>
+        </svg>
+      </div>
+
+      <div class="message__us">
+        <i class="fa-brands fa-facebook-messenger"></i>
+      </div>
+      <btn class="btn__message__us">
+        <i class="fa-brands fa-facebook-messenger"></i>
+        Message us
+      </btn>
+    </section>
+
+    <!-- course lessons  -->
+
+    <section class="course__lessons__section">
+      <div class="heading">
+        <div class="title">
+          New lessons are <span class="has-color">here!</span>
+        </div>
+      </div>
+      <div class="course__lessons__container">
+        <div class="message">
+          Please wait, while we are fetching the data for you ...
+        </div>
+        <!-- <div class="lesson__card">
+          <div class="icon">
+            <i class="fa fa-music"></i>
+            <img src="" alt="" />
+          </div>
+          <div class="lesson__info">
+            <span class="lesson__num">01</span>
+            <div class="right__row">
+              <div class="lesson__name">Vocabulary 1</div>
+              <div class="lesson__cat">Reading</div>
+            </div>
+          </div>
+        </div> -->
+      </div>
+    </section>
+
+    <!-- lesson card popup -->
+    <div class="lesson__popup modal" id="lessonPopup">
+      <!-- <div class="title">What you want to do with?</div> -->
+      <div class="fa fa-xmark close-popup" data-close-modal></div>
+      <div class="lesson__name">Vocabulary 1</div>
+
+      <ul class="action__btns">
+        <li class="btn__play">
+          <i class="fa fa-play"></i>
+          <span>Play</span>
+        </li>
+        <li class="btn__download">
+          <i class="fa fa-arrow-down"></i>
+          <span>Download</span>
+        </li>
+        <li class="btn__share">
+          <i class="fa fa-share-nodes"></i>
+          <span>Share</span>
+        </li>
+        <audio hidden class="master__audio"></audio>
+        <p class="audio__url"></p>
+      </ul>
+    </div>
+
+    <!-- audio player -->
+    <div class="aud__player">
+      <div class="aud__progress">
+        <span class="aud__current__time">0:00</span>
+        <input
+          type="range"
+          class="aud__progressbar"
+          id="aud__progressbar"
+          min="0"
+          max="100"
+          step="1"
+          value="0"
+        />
+        <span class="aud__end__time">0:00</span>
+      </div>
+      <!-- <div class="progress__full2"></div> -->
+
+      <div class="player__main">
+        <div class="player__btns">
+          <button class="play__audio__btn"><i class="fa fa-play"></i></button>
+          <button class="repeat__audio__btn">
+            <i class="fa-solid fa-repeat"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="aud__volume"></div>
+    </div>
+
+    <!-- loading -->
+    <div class="loading modal" id="loadingModal" data-loading>
+      <div class="loader">
+        <p>Please wait ...</p>
+        <div class="progress">
+          <div class="progress__full"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- overlay -->
+    <div class="overlay" data-overlay></div>
+
+    <!-- footer -->
+    <section class="footer">
+      <div class="footer__container">
+        <div class="copyright">
+          <p>
+            Copyrights&copy;
+            <script>
+              let date = new Date();
+              document.write(date.getFullYear());
+            </script>
+            All rights reserved.
+          </p>
+        </div>
+
+        <div class="developer">
+          <p>
+            Designed and Developed with
+            <i class="fa fa-heart" style="color: red"></i> by:
+            <a href="">Shahid Ullah (Safi)</a>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- font awesome -->
+    <script
+      src="https://kit.fontawesome.com/1daeea735e.js"
+      crossorigin="anonymous"
+    ></script>
+    <!-- custome js -->
+    <script src="./assets/js/main.js"></script>
+    <script src="./assets/js/course.js"></script>
+    <script src="./assets/js/lesson.js"></script>
+  </body>
+</html>
