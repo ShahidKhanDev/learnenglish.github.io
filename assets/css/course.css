@@ -356,6 +356,10 @@
 
 /* media queries */
 @media (max-width: 475px) {
+  .hero__section .hero__text .bg__text__course span {
+    font-size: 3.5rem;
+  }
+
   .hero__section .hero__text .bg__text__course img {
     width: 60px;
   }
