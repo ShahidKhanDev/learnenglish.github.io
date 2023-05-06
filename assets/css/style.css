@@ -561,7 +561,7 @@ html {
 }
 
 .loading.show .progress .progress__full {
-  animation: load 1.5s ease forwards;
+  animation: load 3s ease forwards;
 }
 
 @keyframes load {
