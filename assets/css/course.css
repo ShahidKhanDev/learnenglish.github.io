@@ -355,6 +355,18 @@
 }
 
 /* media queries */
+@media (max-width: 768px) {
+  .course__lessons__section {
+    padding: 1rem;
+  }
+
+  .course__lessons__container .lesson__card {
+    height: 4rem;
+    display: flex;
+    align-items: center;
+  }
+}
+
 @media (max-width: 475px) {
   .hero__section .hero__text .bg__text__course span {
     font-size: 3.5rem;
