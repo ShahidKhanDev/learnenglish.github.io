@@ -12,6 +12,12 @@ const courseId = localStorage.getItem("courseId");
    courseId = 3 => Reading, courseId = 4 => Conversation
 */
 
+if (document.readyState == "complete") {
+  setTimeout(() => {
+    loading.classList.remove("show");
+  }, 2000);
+}
+
 if (courseId == 1) {
   let courseText = `
     <h1 class="bg__text bg__text__course">
