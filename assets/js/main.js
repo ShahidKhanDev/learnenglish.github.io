@@ -25,7 +25,6 @@ openLoadingBtns.forEach((btn) => {
     loading.classList.add("show");
 
     let linkTarget = btn.firstElementChild.href;
-    console.log(linkTarget, btn);
 
     if (btn.classList.contains("locked")) {
       loading.classList.remove("show");
