@@ -25,6 +25,13 @@ openLoadingBtns.forEach((btn) => {
     loading.classList.add("show");
 
     let linkTarget = btn.firstElementChild.href;
+    console.log(linkTarget, btn);
+
+    if (btn.classList.contains("locked")) {
+      loading.classList.remove("show");
+      return;
+    }
+
     if (linkTarget == undefined) {
       let linkTarget = btn.dataset.target;
       let courseId = btn.id;
@@ -83,15 +90,9 @@ function closeModal(modal) {
   overlay.classList.remove("show");
 }
 
-// when click on the course card it will open the clicked course
-courseCards.forEach((card) => {
-  card.addEventListener("click", () => {});
-});
-
 /**
  * Lesson Cards
  */
-
 lessonCards.forEach((card) => {
   card.addEventListener("click", () => {
     lessonCardPopup.classList.add("active");
