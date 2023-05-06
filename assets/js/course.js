@@ -140,13 +140,17 @@ audioPlayPopupBtn.addEventListener("click", () => {
 
 // download audio
 audioDownloadPopupBtn.addEventListener("click", () => {
-  let dlLink = document.createElement("a");
-  dlLink.href = music.currentSrc;
+  const audioSrc = lessonPopupAudUrl.innerHTML.split("file-")[1].split("-")[0];
+  const audioExt = lessonPopupAudUrl.innerHTML.split("file-")[1].split("-")[1];
+  // getting the exact audio url
+  const audioURL = `${audioSrc}.${audioExt}`;
 
+  let dlLink = document.createElement("a");
   dlLink.setAttribute("download", "");
+  dlLink.href = `https://cdn.sanity.io/files/${projectId}/${dataset}/${audioURL}`;
+
   dlLink.click();
   audioDownloadPopupBtn.appendChild(dlLink);
-
   setTimeout(() => {
     audioDownloadPopupBtn.removeChild(dlLink);
   }, 200);
