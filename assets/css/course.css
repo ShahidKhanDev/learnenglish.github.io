@@ -363,6 +363,11 @@
   .hero__section .hero__text .bg__text__course img {
     width: 60px;
   }
+
+  .heading .title::before,
+  .heading .title::after {
+    display: none;
+  }
 }
 
 @media (max-width: 375px) {
