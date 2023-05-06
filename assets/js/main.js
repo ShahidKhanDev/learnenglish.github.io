@@ -39,7 +39,7 @@ openLoadingBtns.forEach((btn) => {
       localStorage.setItem("courseId", courseId);
       if (document.readyState == "complete") {
         setTimeout(() => {
-          loading.classList.remove("show");
+          // loading.classList.remove("show");
           location.href = linkTarget;
         }, 2000);
       }
