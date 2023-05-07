@@ -170,6 +170,10 @@ function pauseMusic() {
   audioPlayMasterBtn.firstElementChild.classList.replace("fa-pause", "fa-play");
 }
 
+music.addEventListener("loadstart", () => {
+  audioProgressbar.value = 0;
+});
+
 music.addEventListener("timeupdate", (e) => {
   let currentTime = Math.floor(music.currentTime);
   let duration = Math.floor(music.duration);
