@@ -15,40 +15,54 @@ const lessonCards = document.querySelectorAll(
 const lessonCardPopup = document.querySelector(".lesson__popup");
 
 // opening the loading overlay when each clickable item is clicked
-openLoadingBtns.forEach((btn) => {
-  btn.addEventListener("click", (e) => {
-    e.preventDefault();
-    removeShowLoading();
+// openLoadingBtns.forEach((btn) => {
+//   btn.addEventListener("click", (e) => {
+//     e.preventDefault();
+//     removeShowLoading();
 
-    overlay.classList.remove("show");
-    mobMenu.classList.remove("active");
+//     overlay.classList.remove("show");
+//     mobMenu.classList.remove("active");
+//     loading.classList.add("show");
+
+//     let linkTarget = btn.firstElementChild.href;
+
+//     if (btn.classList.contains("locked")) {
+//       loading.classList.remove("show");
+//       return;
+//     }
+
+//     if (linkTarget == undefined) {
+//       let linkTarget = btn.dataset.target;
+//       let courseId = btn.id;
+
+//       // save the courseId in localStorage
+//       localStorage.setItem("courseId", courseId);
+//       if (document.readyState == "complete") {
+//         setTimeout(() => {
+//           // loading.classList.remove("show");
+//           location.href = linkTarget;
+//         }, 2000);
+//       }
+//     } else {
+//       setTimeout(() => {
+//         loading.classList.remove("show");
+//         location.href = linkTarget;
+//       }, 2000);
+//     }
+//   });
+// });
+
+courseCards.forEach((card) => {
+  card.addEventListener("click", (e) => {
+    if (card.classList.contains("locked")) {
+      e.preventDefault();
+    }
+    // showing loading
     loading.classList.add("show");
-
-    let linkTarget = btn.firstElementChild.href;
-
-    if (btn.classList.contains("locked")) {
-      loading.classList.remove("show");
-      return;
-    }
-
-    if (linkTarget == undefined) {
-      let linkTarget = btn.dataset.target;
-      let courseId = btn.id;
-
-      // save the courseId in localStorage
-      localStorage.setItem("courseId", courseId);
-      if (document.readyState == "complete") {
-        location.href = linkTarget;
-        setTimeout(() => {
-          loading.classList.remove("show");
-        }, 3000);
-      }
-    } else {
-      setTimeout(() => {
-        loading.classList.remove("show");
-        location.href = linkTarget;
-      }, 2000);
-    }
+    // getting the courseId from the card
+    let courseId = card.id;
+    // save the courseId in localStorage
+    localStorage.setItem("courseId", courseId);
   });
 });
 
