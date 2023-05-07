@@ -1,3 +1,4 @@
+const courseHeroBg = document.querySelector(".course__hero__section");
 const courseHeroText = document.querySelector(
   ".hero__section .hero__text__course"
 );
@@ -18,51 +19,44 @@ if (document.readyState == "complete") {
   }, 2000);
 }
 
+courseHeroBg.style.background = "url('/assets/images/bg.jpg')";
+courseHeroBg.style.backgroundRepeat = "no-repeat";
+courseHeroBg.style.backgroundSize = "cover";
+courseHeroBg.style.backgroundPosition = "center";
+
 if (courseId == 1) {
   let courseText = `
     <h1 class="bg__text bg__text__course">
-      <span>Vocabu</span><img src="./assets/images/vocabulary.png" /><span
-        class="has-color"
-        >lary</span>
+      <span>Vocabu</span><img src="./assets/images/vocabulary1.png" /><span class="has-color">lary</span>
     </h1>
-    <p class="sm__text">anytime and anywhere</p>
-    <a href="#courses__section" class="btn__explore">Explore Courses</a>
+    <p class="sm__text"></p>
   `;
 
   courseHeroText.innerHTML = courseText;
 } else if (courseId == 2) {
   let courseText = `
     <h1 class="bg__text bg__text__course">
-      <span>Gram</span><img src="./assets/images/grammar.png" /><span
-        class="has-color"
-        >mar</span>
+      <span>Gram</span><img src="./assets/images/grammar1.png" /><span class="has-color">mar</span>
     </h1>
-    <p class="sm__text">anytime and anywhere</p>
-    <a href="#courses__section" class="btn__explore">Explore Courses</a>
+    <p class="sm__text"></p>
   `;
 
   courseHeroText.innerHTML = courseText;
 } else if (courseId == 3) {
   let courseText = `
-      <h1 class="bg__text bg__text__course">
-        <span>Read</span><img src="./assets/images/reading.png" /><span
-          class="has-color"
-          >ing</span>
-      </h1>
-      <p class="sm__text">anytime and anywhere</p>
-      <a href="#courses__section" class="btn__explore">Explore Courses</a>
-    `;
+  <h1 class="bg__text bg__text__course">
+  <span>Read</span><img src="./assets/images/reading1.png" /><span class="has-color">ing</span>
+  </h1>
+  <p class="sm__text"></p>
+  `;
 
   courseHeroText.innerHTML = courseText;
 } else if (courseId == 4) {
   let courseText = `
     <h1 class="bg__text bg__text__course">
-      <span>Conversa</span><img src="./assets/images/conversation.png" /><span
-        class="has-color"
-        >tion</span>
+      <span>Conversa</span><img src="./assets/images/conversation1.png" /><span class="has-color">tion</span>
     </h1>
-    <p class="sm__text">anytime and anywhere</p>
-    <a href="#courses__section" class="btn__explore">Explore Courses</a>
+    <p class="sm__text"></p>
   `;
 
   courseHeroText.innerHTML = courseText;
@@ -71,9 +65,7 @@ if (courseId == 1) {
 function generateHeroText(course) {
   let courseText = `
     <h1 class="bg__text bg__text__course">
-    <span>${course}</span><img src="./assets/images/${course}.png" /><span
-        class="has-color"
-        >tion</span>
+    <span>${course}</span><img src="./assets/images/${course}.png" /><span class="has-color">tion</span>
     </h1>
     <p class="sm__text">anytime and anywhere</p>
     <a href="#courses__section" class="btn__explore">Explore Courses</a>`;
@@ -120,7 +112,7 @@ const audioCurrTime = document.querySelector(".aud__current__time");
 const audioEndTime = document.querySelector(".aud__end__time");
 // const progressFull = document.querySelector(".progress__full2");
 
-let music = new Audio("music/1.mp3");
+let music = new Audio("");
 
 audioPlayPopupBtn.addEventListener("click", () => {
   audioPlayer.classList.add("active");

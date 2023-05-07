@@ -19,9 +19,9 @@
   <body>
     <!-- header -->
     <div class="header">
-      <a href="./index.html" class="logo"
-        ><img src="./assets/images/logo.png" alt="logo"
-      /></a>
+      <a href="./index.html" class="logo">
+        <i class="fa fa-language"></i>Learn English
+      </a>
 
       <ul class="navbar">
         <li class="nav__item" data-open-loading>
@@ -50,8 +50,8 @@
 
     <!-- mobile menu -->
     <div class="mob__menu modal" id="mobMenu">
-      <a href="./index.html" class="logo">
-        <img src="./assets/images/logo.png" alt="logo" />
+      <a href="./index.html" class="logo mob__logo">
+        <i class="fa fa-language"></i>Learn English
       </a>
 
       <div class="close__mob__menu" data-close-modal>
@@ -86,7 +86,15 @@
     </div>
 
     <!-- hero -->
-    <section class="hero__section">
+    <section
+      class="hero__section"
+      style="
+        background: url('/assets/images/bg.jpg');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+      "
+    >
       <div class="hero__text">
         <h1 class="bg__text">Learn <span class="has-color">English,</span></h1>
         <p class="sm__text">anytime and anywhere</p>
@@ -121,7 +129,7 @@
       </div>
 
       <div class="courses__container">
-        <a href="./course.html" class="course__card locked" id="1">
+        <a href="./course.html" class="course__card" id="1">
           <i class="fa fa-lock"></i>
           <span class="num">01</span>
           <div class="course__name">Vocabulary</div>
@@ -129,7 +137,7 @@
           <!-- <a href="./course.html" class="btn__start__course">Start Learning</a> -->
         </a>
 
-        <a href="./course.html" class="course__card locked" id="2">
+        <a href="./course.html" class="course__card" id="2">
           <i class="fa fa-lock"></i>
           <span class="num">02</span>
           <div class="course__name">Grammar</div>
@@ -145,7 +153,7 @@
           <!-- <a href="./course.html" class="btn__start__course">Start Learning</a> -->
         </a>
 
-        <a href="./course.html" class="course__card locked" id="4">
+        <a href="./course.html" class="course__card" id="4">
           <i class="fa fa-lock"></i>
           <span class="num">02</span>
           <div class="course__name">Conversation</div>

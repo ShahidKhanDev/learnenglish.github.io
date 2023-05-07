@@ -1,10 +1,11 @@
 // DOM Elements
+const header = document.querySelector(".header");
+const logo = document.querySelector(".logo");
 const openModalBtns = document.querySelectorAll("[data-modal-open]");
 const closeModalBtns = document.querySelectorAll("[data-close-modal]");
 const overlay = document.querySelector("[data-overlay]");
 const openLoadingBtns = document.querySelectorAll("[data-open-loading]");
 const navLinks = document.querySelectorAll(".nav__item");
-const loading = document.querySelector("[data-loading]");
 const loader = document.querySelector(".loader");
 const mobMenu = document.querySelector(".mob__menu");
 const courseCards = document.querySelectorAll(
@@ -15,44 +16,6 @@ const lessonCards = document.querySelectorAll(
 );
 const lessonCardPopup = document.querySelector(".lesson__popup");
 
-// opening the loading overlay when each clickable item is clicked
-// openLoadingBtns.forEach((btn) => {
-//   btn.addEventListener("click", (e) => {
-//     e.preventDefault();
-//     removeShowLoading();
-
-//     overlay.classList.remove("show");
-//     mobMenu.classList.remove("active");
-//     loading.classList.add("show");
-
-//     let linkTarget = btn.firstElementChild.href;
-
-//     if (btn.classList.contains("locked")) {
-//       loading.classList.remove("show");
-//       return;
-//     }
-
-//     if (linkTarget == undefined) {
-//       let linkTarget = btn.dataset.target;
-//       let courseId = btn.id;
-
-//       // save the courseId in localStorage
-//       localStorage.setItem("courseId", courseId);
-//       if (document.readyState == "complete") {
-//         setTimeout(() => {
-//           // loading.classList.remove("show");
-//           location.href = linkTarget;
-//         }, 2000);
-//       }
-//     } else {
-//       setTimeout(() => {
-//         loading.classList.remove("show");
-//         location.href = linkTarget;
-//       }, 2000);
-//     }
-//   });
-// });
-
 // remove the loader when the page loads
 window.addEventListener("load", () => {
   loader.classList.add("hide");
@@ -62,6 +25,18 @@ window.addEventListener("load", () => {
   });
 });
 
+// active header
+window.addEventListener("scroll", () => {
+  if (window.pageYOffset > 20) {
+    header.classList.add("sticky");
+    logo.classList.add("active");
+  } else {
+    header.classList.remove("sticky");
+    logo.classList.remove("active");
+  }
+});
+
+// course cards when clicked
 courseCards.forEach((card) => {
   card.addEventListener("click", (e) => {
     if (card.classList.contains("locked")) {

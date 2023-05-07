@@ -11,14 +11,35 @@
   --messenger-clr: #3274f7;
 }
 
+.course__header .logo,
+.course__header .navbar li a,
+.course__header .navbar .btn__search {
+  color: var(--chinese-black);
+}
+
+.course__header .navbar .btn__search {
+  transition: 0.25s ease-in-out;
+}
+
+.course__header .navbar .btn__search:hover {
+  background-color: var(--blue-crayola);
+  color: var(--white);
+}
+
+.course__header.sticky .navbar .btn__search {
+  color: var(--white);
+}
+
 .hero__section .hero__text .bg__text__course {
   display: flex;
   align-items: center;
   justify-content: center;
+  color: var(--chinese-black);
 }
 
 .hero__section .hero__text .bg__text__course img {
-  width: 70px;
+  width: 80px;
+  margin: 0 0 0 0.3rem;
 }
 
 /* course lessons section */
@@ -360,10 +381,18 @@
     padding: 1rem;
   }
 
+  .course__lessons__container {
+    grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
+  }
+
   .course__lessons__container .lesson__card {
     height: 4rem;
     display: flex;
     align-items: center;
+  }
+
+  .lesson__card .lesson__info .lesson__name {
+    max-width: 12rem;
   }
 }
 
@@ -373,17 +402,29 @@
   }
 
   .hero__section .hero__text .bg__text__course img {
-    width: 60px;
+    width: 70px;
   }
 
   .heading .title::before,
   .heading .title::after {
     display: none;
   }
+
+  .course__lessons__container {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .lesson__card .lesson__info .lesson__name {
+    width: 9rem;
+  }
 }
 
 @media (max-width: 375px) {
+  .hero__section .hero__text .bg__text__course span {
+    font-size: 3rem;
+  }
+
   .hero__section .hero__text .bg__text__course img {
-    width: 45px;
+    width: 60px;
   }
 }
