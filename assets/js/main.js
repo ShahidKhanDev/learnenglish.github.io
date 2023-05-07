@@ -63,6 +63,10 @@ courseCards.forEach((card) => {
     let courseId = card.id;
     // save the courseId in localStorage
     localStorage.setItem("courseId", courseId);
+
+    if (document.readyState == "complete") {
+      loading.classList.remove("show");
+    }
   });
 });
 
