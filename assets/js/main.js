@@ -5,6 +5,7 @@ const overlay = document.querySelector("[data-overlay]");
 const openLoadingBtns = document.querySelectorAll("[data-open-loading]");
 const navLinks = document.querySelectorAll(".nav__item");
 const loading = document.querySelector("[data-loading]");
+const loader = document.querySelector(".loader");
 const mobMenu = document.querySelector(".mob__menu");
 const courseCards = document.querySelectorAll(
   ".courses__section .course__card"
@@ -52,17 +53,20 @@ const lessonCardPopup = document.querySelector(".lesson__popup");
 //   });
 // });
 
+// remove the loader when the page loads
+window.addEventListener("load", () => {
+  loader.classList.add("hide");
+
+  loader.addEventListener("transitionend", () => {
+    document.body.removeChild(loader);
+  });
+});
+
 courseCards.forEach((card) => {
   card.addEventListener("click", (e) => {
     if (card.classList.contains("locked")) {
       e.preventDefault();
     }
-    // showing loading
-    loading.classList.add("show");
-
-    setTimeout(() => {
-      loading.classList.remove("show");
-    }, 3000);
     // getting the courseId from the card
     let courseId = card.id;
     // save the courseId in localStorage
