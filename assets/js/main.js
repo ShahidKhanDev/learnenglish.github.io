@@ -41,7 +41,7 @@ openLoadingBtns.forEach((btn) => {
         location.href = linkTarget;
         setTimeout(() => {
           loading.classList.remove("show");
-        }, 2000);
+        }, 3000);
       }
     } else {
       setTimeout(() => {
