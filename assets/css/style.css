@@ -86,6 +86,7 @@ html {
   display: flex;
   align-items: center;
   gap: 0.3rem;
+  font-size: 1.3rem;
   font-weight: 700;
   color: var(--chinese-black);
 }
@@ -681,8 +682,8 @@ html {
     width: 100%;
   }
 
-  .header .logo {
-    font-size: 1.5rem;
+  .header .menu__btn i {
+    font-size: 1.4rem;
   }
 
   .hero__section .hero__text .bg__text {
