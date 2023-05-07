@@ -399,6 +399,7 @@ html {
   outline: 2px solid rgba(0, 0, 0, 0.15);
   outline-offset: 3px;
   user-select: none;
+  color: var(--chinese-black);
 }
 
 .courses__section .courses__container .course__card .fa-lock {
