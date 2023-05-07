@@ -205,7 +205,7 @@
   background-color: var(--white);
   border-radius: 0.6rem;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-  z-index: 11;
+  z-index: 12;
   transition: all 0.25s ease-in-out;
   opacity: 0;
   visibility: hidden;
@@ -311,7 +311,7 @@
 }
 
 .aud__player.active {
-  transform: translateY(0);
+  transform: translateY(0px);
 }
 
 .aud__progress {
