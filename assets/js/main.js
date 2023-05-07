@@ -14,6 +14,9 @@ const lessonCards = document.querySelectorAll(
 );
 const lessonCardPopup = document.querySelector(".lesson__popup");
 
+// hide loading
+loading.classList.remove("show");
+
 // opening the loading overlay when each clickable item is clicked
 openLoadingBtns.forEach((btn) => {
   btn.addEventListener("click", (e) => {
