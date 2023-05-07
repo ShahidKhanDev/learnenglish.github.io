@@ -83,6 +83,7 @@
   grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
   column-gap: 1rem;
   row-gap: 1rem;
+  padding-bottom: 1.5rem;
 }
 
 .message {
