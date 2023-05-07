@@ -634,7 +634,12 @@ html {
     gap: 0.5rem;
     font-size: 1.2rem;
     font-weight: 600;
+    color: var(--chinese-black);
     width: 100%;
+  }
+
+  .mob__menu .logo i {
+    font-size: 1.5rem;
   }
 
   .mob__menu .fa-xmark {
