@@ -59,14 +59,14 @@ courseCards.forEach((card) => {
     }
     // showing loading
     loading.classList.add("show");
+
+    setTimeout(() => {
+      loading.classList.remove("show");
+    }, 3000);
     // getting the courseId from the card
     let courseId = card.id;
     // save the courseId in localStorage
     localStorage.setItem("courseId", courseId);
-
-    if (document.readyState == "complete") {
-      loading.classList.remove("show");
-    }
   });
 });
 
