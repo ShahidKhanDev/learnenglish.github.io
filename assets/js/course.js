@@ -9,6 +9,8 @@ const courseLessonCards = document.querySelectorAll(
 // audio text
 const audioText = document.querySelector(".aud__text");
 const audioTextElem = audioText.querySelector(".text");
+const audioTextTitle = document.querySelector(".aud__text .text .title");
+const audioTextBody = document.querySelector(".aud__text .text .text__body");
 const audioTextOpenBtn = document.querySelector(".aud__text__open__btn");
 const audioTextCloseBtn = document.querySelector(".aud__text__close__btn");
 const audioTextOverlay = document.querySelector(".aud__text__overlay");
@@ -102,6 +104,7 @@ const lessonPopupMasterAud = document.querySelector(
   ".lesson__popup .master__audio"
 );
 const lessonPopupAudUrl = document.querySelector(".lesson__popup .audio__url");
+const lessonPopupId = document.querySelector(".lesson__popup .lesson__id");
 
 // https://cdn.sanity.io/files/rfaksjo9/production/11042272f71ca93cc6c9b04901f06584d8dfc107.mp3
 
@@ -121,21 +124,21 @@ const audioEndTime = document.querySelector(".aud__end__time");
 
 let music = new Audio("");
 
-audioPlayPopupBtn.addEventListener("click", () => {
-  audioPlayer.classList.add("active");
-  overlay.classList.remove("show");
-  lessonCardPopup.classList.remove("active");
+// audioPlayPopupBtn.addEventListener("click", () => {
+//   audioPlayer.classList.add("active");
+//   overlay.classList.remove("show");
+//   lessonCardPopup.classList.remove("active");
 
-  const audioSrc = lessonPopupAudUrl.innerHTML.split("file-")[1].split("-")[0];
-  const audioExt = lessonPopupAudUrl.innerHTML.split("file-")[1].split("-")[1];
+//   const audioSrc = lessonPopupAudUrl.innerHTML.split("file-")[1].split("-")[0];
+//   const audioExt = lessonPopupAudUrl.innerHTML.split("file-")[1].split("-")[1];
 
-  // getting the exact audio url
-  const audioURL = `${audioSrc}.${audioExt}`;
+//   // getting the exact audio url
+//   const audioURL = `${audioSrc}.${audioExt}`;
 
-  // changing the music src to the audio url
-  music.src = `https://cdn.sanity.io/files/${projectId}/${dataset}/${audioURL}`;
-  audioPlayMasterBtn.click();
-});
+//   // changing the music src to the audio url
+//   music.src = `https://cdn.sanity.io/files/${projectId}/${dataset}/${audioURL}`;
+//   audioPlayMasterBtn.click();
+// });
 
 // download audio
 audioDownloadPopupBtn.addEventListener("click", () => {
@@ -316,11 +319,6 @@ function createLessonCards(data) {
     for (let i = 0; i < lessonData.length; i++) {
       index++;
 
-      // fetching the audio text from the sanity
-      if (lessonData[i].hasOwnProperty("richText")) {
-        console.log("good");
-      }
-
       let lessonCard = `
       <div class="lesson__card" data-audio-src="${
         lessonData[i].audio.asset._ref
@@ -354,9 +352,14 @@ function createLessonCards(data) {
           card.classList.remove("active");
         });
 
+        // getting card id
+        const cardId = card.dataset.id;
+
         // getting the audio src from the card
         const audioSrc = card.dataset.audioSrc;
         lessonPopupAudUrl.innerHTML = audioSrc;
+        // passing this to the function generateAudioText()
+        lessonPopupId.innerHTML = cardId;
 
         card.classList.add("active");
         overlay.classList.add("show");
@@ -379,10 +382,31 @@ function createLessonCards(data) {
           lessonCardPopup.classList.remove("active");
           mobMenu.classList.remove("active");
         });
-
-        // generating the audio text from sanity
-        generateAudText();
       });
+    });
+
+    // when clicking on play button of popup
+    audioPlayPopupBtn.addEventListener("click", () => {
+      audioPlayer.classList.add("active");
+      overlay.classList.remove("show");
+      lessonCardPopup.classList.remove("active");
+
+      const audioSrc = lessonPopupAudUrl.innerHTML
+        .split("file-")[1]
+        .split("-")[0];
+      const audioExt = lessonPopupAudUrl.innerHTML
+        .split("file-")[1]
+        .split("-")[1];
+
+      // getting the exact audio url
+      const audioURL = `${audioSrc}.${audioExt}`;
+
+      // changing the music src to the audio url
+      music.src = `https://cdn.sanity.io/files/${projectId}/${dataset}/${audioURL}`;
+      audioPlayMasterBtn.click();
+
+      // generating the audio text from sanity.io using function
+      generateAudText(data, lessonPopupId);
     });
   } else {
     messageElem.style.display = "block";
@@ -401,8 +425,35 @@ function getAudioPath(url) {
   return url;
 }
 
-function generateAudText() {
-  console.log("genrating audio text");
+function generateAudText(data, cardId) {
+  cardId = cardId.innerText;
+  const lessonData = data.result;
+  audioTextElem.innerHTML = "";
+  for (let i = 0; i < lessonData.length; i++) {
+    let lessonId = lessonData[i]._id;
+    if (cardId == lessonId) {
+      if (lessonData[i].hasOwnProperty("richText")) {
+        const textHeadingStyle = lessonData[i].richText[0].style;
+        const textHeading = lessonData[i].richText[0].children[0].text;
+
+        audioTextTitle.innerHTML = `<${textHeadingStyle}>${textHeading}</${textHeadingStyle}>`;
+
+        let richText = lessonData[i].richText;
+        richText = Object.values(richText);
+
+        for (let j = 1; j < richText.length; j++) {
+          let textBody = document.createElement("p");
+          textBody.innerHTML = richText[j].children[0].text;
+          textBody.classList.add("text__body");
+
+          audioTextElem.appendChild(textBody);
+        }
+      } else {
+        audioTextElem.innerHTML =
+          "<div class='no__text'>Oops! Sorry, No text available.</div>";
+      }
+    }
+  }
 }
 
 window.addEventListener("DOMContentLoaded", getLessons);

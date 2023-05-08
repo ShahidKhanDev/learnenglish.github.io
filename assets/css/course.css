@@ -316,7 +316,8 @@
   color: var(--white);
 }
 
-.lesson__popup .action__btns .audio__url {
+.lesson__popup .action__btns .audio__url,
+.lesson__popup .action__btns .lesson__id {
   display: none;
 }
 
@@ -453,6 +454,16 @@
   overflow-y: auto;
   font-weight: 500;
   padding: 0 1rem;
+}
+
+.aud__text .no__text {
+  font-size: 1.4rem;
+  color: red;
+  font-weight: 600;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .aud__text__btns {
