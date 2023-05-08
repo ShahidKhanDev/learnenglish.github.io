@@ -419,24 +419,6 @@ function createLessonCards(data) {
   }
 }
 
-// copy audio text
-audioTextCopyBtn.addEventListener("click", () => {
-  let allTexts = [];
-  for (let i = 0; i < audioTextElem.childElementCount; i++) {
-    const textToCopy = audioTextElem.children[i].innerText;
-    // navigator.clipboard.writeText(i);
-
-    allTexts.push(textToCopy);
-  }
-
-  navigator.clipboard.writeText(allTexts.join("\n"));
-  audioTextCopy.classList.add("active");
-
-  setTimeout(() => {
-    audioTextCopy.classList.remove("active");
-  }, 800);
-});
-
 function addZero(num) {
   return num < 10 ? "0" + num : num;
 }
@@ -447,6 +429,7 @@ function getAudioPath(url) {
 
 function copyAudText() {}
 
+// generate the audio text from the data and LessonId Passed
 function generateAudText(data, cardId) {
   cardId = cardId.innerText;
   const lessonData = data.result;
@@ -455,6 +438,9 @@ function generateAudText(data, cardId) {
     let lessonId = lessonData[i]._id;
     if (cardId == lessonId) {
       if (lessonData[i].hasOwnProperty("richText")) {
+        audioTextCopyBtn.style.opacity = "1";
+        audioTextCopyBtn.style.visibility = "visible";
+
         const textHeadingStyle = lessonData[i].richText[0].style;
         const textHeading = lessonData[i].richText[0].children[0].text;
 
@@ -473,9 +459,31 @@ function generateAudText(data, cardId) {
       } else {
         audioTextElem.innerHTML =
           "<div class='no__text'>Oops! Sorry, No text available.</div>";
+
+        audioTextCopyBtn.style.opacity = "0";
+        audioTextCopyBtn.style.visibility = "hidden";
       }
     }
   }
 }
+
+// copy audio text
+audioTextCopyBtn.addEventListener("click", () => {
+  let allTexts = [];
+
+  for (let i = 0; i < audioTextElem.childElementCount; i++) {
+    const textToCopy = audioTextElem.children[i].innerText;
+    // navigator.clipboard.writeText(i);
+
+    allTexts.push(textToCopy);
+  }
+
+  navigator.clipboard.writeText(allTexts.join("\n"));
+  audioTextCopy.classList.add("active");
+
+  setTimeout(() => {
+    audioTextCopy.classList.remove("active");
+  }, 800);
+});
 
 window.addEventListener("DOMContentLoaded", getLessons);
