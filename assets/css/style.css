@@ -195,7 +195,7 @@ html {
 
 #modalSearch {
   z-index: 11;
-  background-color: var(--chinese-black);
+  background-color: var(--white);
   transform: translateY(-200%);
 }
 
@@ -204,7 +204,7 @@ html {
 }
 
 .close__modal__search {
-  color: var(--white);
+  color: var(--chinese-black);
   position: absolute;
   top: 3%;
   right: 1.5%;
@@ -220,7 +220,11 @@ html {
 }
 
 .close__modal__search:hover {
-  background-color: var(--eerie-black);
+  background-color: var(--blue-crayola);
+}
+
+.close__modal__search:hover i {
+  color: var(--white);
 }
 
 #modalSearch .search__form {
@@ -228,7 +232,9 @@ html {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: var(--eerie-black);
+  background-color: transparent;
+  /* box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; */
+  outline: 2px solid var(--blue-crayola);
   width: 22rem;
   position: relative;
   z-index: 10;
@@ -240,7 +246,7 @@ html {
   left: 3%;
   transform: translateY(-50%);
   font-size: 0.8rem;
-  color: var(--white);
+  color: var(--chinese-black);
 }
 
 .search__form .input__search {
@@ -250,8 +256,13 @@ html {
   padding: 0.7rem;
   width: 100%;
   padding-left: 2.2rem;
-  color: var(--white);
+  color: var(--chinese-black);
   font-size: 1rem;
+}
+
+.search__form .input__search::selection {
+  background-color: var(--blue-crayola);
+  color: var(--white);
 }
 
 /* hero section */
