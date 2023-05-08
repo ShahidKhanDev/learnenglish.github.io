@@ -29,16 +29,16 @@ html {
   scroll-behavior: smooth;
 }
 
-::-webkit-scrollbar {
+html::-webkit-scrollbar {
   width: 8px;
 }
 
-::-webkit-scrollbar-track {
+html::-webkit-scrollbar-track {
   background-color: rgba(0, 0, 0, 0.15);
   overflow: hidden;
 }
 
-::-webkit-scrollbar-thumb {
+html::-webkit-scrollbar-thumb {
   background-color: var(--messenger-clr);
 }
 
@@ -194,7 +194,7 @@ html {
 }
 
 #modalSearch {
-  z-index: 11;
+  z-index: 13;
   background-color: var(--white);
   transform: translateY(-200%);
 }
@@ -627,7 +627,7 @@ html {
     height: 100%;
     width: 18rem;
     background-color: var(--white);
-    z-index: 12;
+    z-index: 13;
     box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
     transform: translateX(-200%);
     transition: 0.3s ease-in-out;

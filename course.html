@@ -3,7 +3,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Learn English</title>
+    <title>Learn English - Course</title>
 
     <!-- custom css -->
     <link rel="stylesheet" href="./assets/css/style.css" />
@@ -70,6 +70,7 @@
       </ul>
     </div>
 
+    <!-- search screen -->
     <div class="modal search__modal" id="modalSearch">
       <div class="close__modal__search" data-close-modal>
         <i class="fa fa-xmark"></i>
@@ -139,6 +140,11 @@
           </div>
         </div> -->
       </div>
+      <div class="view__all__lessons">
+        <a href="./viewAll.html" class="btn__view__all"
+          >View All <i class="fa fa-arrow-right"></i
+        ></a>
+      </div>
     </section>
 
     <!-- lesson card popup -->
@@ -167,42 +173,60 @@
 
     <!-- audio player -->
     <div class="aud__player">
-      <div class="aud__progress">
-        <span class="aud__current__time">0:00</span>
-        <input
-          type="range"
-          class="aud__progressbar"
-          id="aud__progressbar"
-          min="0"
-          max="100"
-          step="1"
-          value="0"
-        />
-        <span class="aud__end__time">0:00</span>
-      </div>
-      <!-- <div class="progress__full2"></div> -->
+      <div class="aud__player__main">
+        <div class="aud__progress">
+          <span class="aud__current__time">0:00</span>
+          <input
+            type="range"
+            class="aud__progressbar"
+            id="aud__progressbar"
+            min="0"
+            max="100"
+            step="1"
+            value="0"
+          />
+          <span class="aud__end__time">0:00</span>
+        </div>
+        <!-- <div class="progress__full2"></div> -->
 
-      <div class="player__main">
-        <div class="player__btns">
-          <button class="play__audio__btn"><i class="fa fa-play"></i></button>
-          <button class="repeat__audio__btn">
-            <i class="fa-solid fa-repeat"></i>
-          </button>
+        <div class="player__main">
+          <div class="player__btns">
+            <button class="repeat__audio__btn">
+              <i class="fa-solid fa-repeat"></i>
+            </button>
+            <button class="play__audio__btn"><i class="fa fa-play"></i></button>
+            <button class="aud__text__open__btn">
+              <i class="fa fa-book-open"></i>
+            </button>
+            <button class="hide__aud__player">
+              <i class="fa fa-compress"></i>
+            </button>
+          </div>
+
+          <div class="aud__volume"></div>
         </div>
       </div>
-
-      <div class="aud__volume"></div>
     </div>
 
-    <!-- loading -->
-    <!-- <div class="loading modal" id="loadingModal" data-loading>
-      <div class="loader">
-        <p>Please wait ...</p>
-        <div class="progress">
-          <div class="progress__full"></div>
-        </div>
+    <!-- audio text -->
+    <div class="aud__text__overlay"></div>
+    <div class="aud__text">
+      <div class="aud__text__btns">
+        <button class="copy__aud__text__btn">
+          <i class="fa-regular fa-clipboard"></i> Copy Text
+        </button>
+
+        <button class="aud__text__close__btn">
+          <i class="fa fa-xmark"></i>
+        </button>
       </div>
-    </div> -->
+      <div class="text">
+        <p class="title"></p>
+        <p class="text__body"></p>
+      </div>
+    </div>
+
+    <!-- loader -->
     <div class="loader"></div>
 
     <!-- overlay -->

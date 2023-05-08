@@ -6,6 +6,13 @@ const courseLessonCards = document.querySelectorAll(
   ".course__lessons__container .lesson__card"
 );
 
+// audio text
+const audioText = document.querySelector(".aud__text");
+const audioTextElem = audioText.querySelector(".text");
+const audioTextOpenBtn = document.querySelector(".aud__text__open__btn");
+const audioTextCloseBtn = document.querySelector(".aud__text__close__btn");
+const audioTextOverlay = document.querySelector(".aud__text__overlay");
+
 // get the courseId from localStorage
 const courseId = localStorage.getItem("courseId");
 
@@ -260,6 +267,19 @@ audioRepeatBtn.addEventListener("click", () => {
   }
 });
 
+// audio text
+audioTextOpenBtn.addEventListener("click", () => {
+  audioText.classList.toggle("active");
+  audioTextOpenBtn.classList.toggle("active");
+  audioTextOverlay.classList.toggle("active");
+});
+
+audioTextCloseBtn.addEventListener("click", () => {
+  audioText.classList.remove("active");
+  audioTextOpenBtn.classList.remove("active");
+  audioTextOverlay.classList.remove("active");
+});
+
 /**
  * fetching the lessons from sanity
  */
@@ -295,10 +315,16 @@ function createLessonCards(data) {
     let index = 0;
     for (let i = 0; i < lessonData.length; i++) {
       index++;
+
+      // fetching the audio text from the sanity
+      if (lessonData[i].hasOwnProperty("richText")) {
+        console.log("good");
+      }
+
       let lessonCard = `
       <div class="lesson__card" data-audio-src="${
         lessonData[i].audio.asset._ref
-      }">
+      }" data-id="${lessonData[i]._id}">
         <div class="icon">
           <i class="fa fa-music"></i>
           <img src="" alt="" />
@@ -353,6 +379,9 @@ function createLessonCards(data) {
           lessonCardPopup.classList.remove("active");
           mobMenu.classList.remove("active");
         });
+
+        // generating the audio text from sanity
+        generateAudText();
       });
     });
   } else {
@@ -370,6 +399,10 @@ function addZero(num) {
 
 function getAudioPath(url) {
   return url;
+}
+
+function generateAudText() {
+  console.log("genrating audio text");
 }
 
 window.addEventListener("DOMContentLoaded", getLessons);

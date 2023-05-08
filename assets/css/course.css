@@ -193,6 +193,30 @@
   font-size: 0.8rem;
 }
 
+.view__all__lessons {
+  text-align: center;
+  margin-top: 1rem;
+  display: none;
+}
+
+.view__all__lessons .btn__view__all {
+  outline: 1px solid rgba(0, 0, 0, 0.15);
+  padding: 0.7rem 3rem;
+  border-radius: 32px;
+  color: var(--chinese-black);
+  font-weight: 600;
+  transition: 0.25s ease-in-out;
+}
+
+.view__all__lessons .btn__view__all:hover {
+  background-color: var(--blue-crayola);
+  color: var(--white);
+}
+
+.view__all__lessons .btn__view__all i {
+  margin-left: 0.5rem;
+}
+
 /* lesson popup */
 .lesson__popup {
   position: fixed;
@@ -304,15 +328,19 @@
   right: 0;
   width: 100%;
   height: 13vh;
-  background-color: var(--white);
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   transform: translateY(200%);
   transition: 0.25s ease-in-out;
-  z-index: 11;
+  z-index: 12;
 }
 
 .aud__player.active {
   transform: translateY(0px);
+}
+
+.aud__player .aud__player__main {
+  background-color: var(--white);
+  height: 100%;
 }
 
 .aud__progress {
@@ -374,7 +402,77 @@
 }
 
 .player__main .play__audio__btn {
-  margin-right: 0.3rem;
+  margin: 0 0.3rem;
+}
+
+/* audio text */
+.aud__text {
+  position: fixed;
+  bottom: 12vh;
+  left: 1rem;
+  right: 1rem;
+  background-color: var(--white);
+  width: calc(100% - 2rem);
+  height: 0;
+  overflow: hidden;
+  border-radius: 7px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  z-index: 11;
+  transition: height 0.25s ease-in-out;
+}
+
+.aud__text__overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity, 0.25s, visibility 0.25s;
+  z-index: 11;
+}
+
+.aud__text__overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.aud__text.active {
+  height: 77vh;
+  overflow: unset;
+}
+
+.aud__text .text {
+  text-align: justify;
+  line-height: 2;
+  max-height: 63vh;
+  overflow-y: auto;
+  font-weight: 500;
+  padding: 0 1rem;
+}
+
+.aud__text__btns {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+}
+
+.aud__text__btns button {
+  outline: 1px solid rgba(0, 0, 0, 0.15);
+  padding: 0.7rem 1rem;
+  font-weight: 600;
+  transition: 0.25s ease-in-out;
+  cursor: pointer;
+}
+
+.aud__text__btns button:hover {
+  background-color: var(--blue-crayola);
+  color: var(--white);
 }
 
 /* media queries */
@@ -395,6 +493,10 @@
 
   .lesson__card .lesson__info .lesson__name {
     max-width: 12rem;
+  }
+
+  .aud__player .aud__text {
+    margin: 0;
   }
 }
 
