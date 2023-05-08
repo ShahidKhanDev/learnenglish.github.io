@@ -10,7 +10,10 @@ const courseLessonCards = document.querySelectorAll(
 const audioText = document.querySelector(".aud__text");
 const audioTextElem = audioText.querySelector(".text");
 const audioTextTitle = document.querySelector(".aud__text .text .title");
-const audioTextBody = document.querySelector(".aud__text .text .text__body");
+const audioTextCopyBtn = document.querySelector(
+  ".aud__text .copy__aud__text__btn"
+);
+const audioTextCopy = document.querySelector(".text__copy");
 const audioTextOpenBtn = document.querySelector(".aud__text__open__btn");
 const audioTextCloseBtn = document.querySelector(".aud__text__close__btn");
 const audioTextOverlay = document.querySelector(".aud__text__overlay");
@@ -310,7 +313,6 @@ async function getLessons() {
 }
 
 // create lesson cards from the data
-
 function createLessonCards(data) {
   const lessonData = data.result;
   if (lessonData.length > 0) {
@@ -417,6 +419,24 @@ function createLessonCards(data) {
   }
 }
 
+// copy audio text
+audioTextCopyBtn.addEventListener("click", () => {
+  let allTexts = [];
+  for (let i = 0; i < audioTextElem.childElementCount; i++) {
+    const textToCopy = audioTextElem.children[i].innerText;
+    // navigator.clipboard.writeText(i);
+
+    allTexts.push(textToCopy);
+  }
+
+  navigator.clipboard.writeText(allTexts.join("\n"));
+  audioTextCopy.classList.add("active");
+
+  setTimeout(() => {
+    audioTextCopy.classList.remove("active");
+  }, 800);
+});
+
 function addZero(num) {
   return num < 10 ? "0" + num : num;
 }
@@ -424,6 +444,8 @@ function addZero(num) {
 function getAudioPath(url) {
   return url;
 }
+
+function copyAudText() {}
 
 function generateAudText(data, cardId) {
   cardId = cardId.innerText;
