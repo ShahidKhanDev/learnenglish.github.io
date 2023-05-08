@@ -77,8 +77,13 @@ closeModalBtns.forEach((btn) => {
 // open modal
 function openModal(modal) {
   if (modal === null) return;
-  modal.classList.add("active");
-  overlay.classList.add("show");
+  if (modal.id === "modalSearch") {
+    modal.classList.add("active");
+    overlay.classList.remove("show");
+  } else {
+    modal.classList.add("active");
+    overlay.classList.add("show");
+  }
 }
 
 // close modal
