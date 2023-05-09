@@ -324,7 +324,6 @@ async function getLessons() {
 // create lesson cards from the data
 function createLessonCards(data) {
   const lessonData = data.result;
-  console.log(lessonData[0]);
 
   if (lessonData.length > 0) {
     // retreive all the lessons
@@ -379,7 +378,7 @@ function createLessonCards(data) {
             .innerText;
         const lessonTitle = card.children[1].children[1].children[0].innerText;
         // passing it to the lesson popup
-        lessonPopupCategoryHead.innerHTML=lessonCategory
+        lessonPopupCategoryHead.innerHTML = lessonCategory;
         lessonPopupNameTitle.innerHTML = lessonTitle;
 
         // getting the audio src from the card
