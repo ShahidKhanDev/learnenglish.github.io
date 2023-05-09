@@ -108,6 +108,12 @@ const lessonPopupMasterAud = document.querySelector(
 );
 const lessonPopupAudUrl = document.querySelector(".lesson__popup .audio__url");
 const lessonPopupId = document.querySelector(".lesson__popup .lesson__id");
+const lessonPopupCategoryHead = document.querySelector(
+  ".lesson__popup .lesson__cat__head"
+);
+const lessonPopupNameTitle = document.querySelector(
+  ".lesson__popup .lesson__name__title"
+);
 
 // https://cdn.sanity.io/files/rfaksjo9/production/11042272f71ca93cc6c9b04901f06584d8dfc107.mp3
 
@@ -273,7 +279,10 @@ audioRepeatBtn.addEventListener("click", () => {
   }
 });
 
-// audio text
+/**
+ * audio text
+ */
+
 audioTextOpenBtn.addEventListener("click", () => {
   audioText.classList.toggle("active");
   audioTextOpenBtn.classList.toggle("active");
@@ -315,6 +324,8 @@ async function getLessons() {
 // create lesson cards from the data
 function createLessonCards(data) {
   const lessonData = data.result;
+  console.log(lessonData[0]);
+
   if (lessonData.length > 0) {
     // retreive all the lessons
     let index = 0;
@@ -333,7 +344,12 @@ function createLessonCards(data) {
           <span class="lesson__num">${addZero(index)}</span>
           <div class="right__row">
             <div class="lesson__name">${lessonData[i].lessonTitle}</div>
-            <div class="lesson__cat">Reading</div>
+            <div class="lesson__det">
+              <div class="lesson__cat">
+                <span class="cat__name">${lessonData[i].category}</span>
+                <p class="lesson__upload__date">${lessonData[i].uploadDate}</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -356,6 +372,15 @@ function createLessonCards(data) {
 
         // getting card id
         const cardId = card.dataset.id;
+
+        // getting category and lesson title name from the card
+        const lessonCategory =
+          card.children[1].children[1].children[1].children[0].children[0]
+            .innerText;
+        const lessonTitle = card.children[1].children[1].children[0].innerText;
+        // passing it to the lesson popup
+        lessonPopupCategoryHead.innerHTML = lessonCategory;
+        lessonPopupNameTitle.innerHTML = lessonTitle;
 
         // getting the audio src from the card
         const audioSrc = card.dataset.audioSrc;

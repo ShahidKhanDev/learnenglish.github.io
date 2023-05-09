@@ -163,7 +163,28 @@
   font-size: 0.7rem;
   font-weight: 700;
   color: var(--eerie-black);
-  width: max-content;
+  display: flex;
+  align-items: center;
+  margin-top: 0.2rem;
+}
+
+.lesson__card .lesson__info .lesson__cat .cat__name {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: capitalize;
+}
+
+.lesson__card .lesson__info .lesson__cat .cat__name::after {
+  content: "•";
+  font-size: 1rem;
+  margin: 0 0.4rem;
+}
+
+.lesson__card .lesson__info .lesson__upload__date {
+  font-size: 0.65rem;
+  font-weight: 700;
 }
 
 .lesson__card .action__btns {
@@ -259,12 +280,27 @@
 }
 
 .lesson__popup .lesson__name {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.lesson__popup .lesson__name .lesson__cat__head {
+  margin-bottom: 0.3rem;
+  font-weight: 500;
+}
+
+.lesson__popup .lesson__name .lesson__name__title {
   letter-spacing: 2px;
   font-weight: 700;
   font-family: var(--ff-poppins);
-  text-align: center;
-  font-size: 1.4rem;
+  font-size: 1.35rem;
   text-transform: uppercase;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  max-width: 90%;
 }
 
 .lesson__popup .action__btns {
