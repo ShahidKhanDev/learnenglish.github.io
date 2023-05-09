@@ -274,13 +274,13 @@ audioProgressbar.addEventListener("input", () => {
 });
 
 // repeat audio
-audioRepeatBtn.addEventListener("click", () => {
-  if (!audioRepeatBtn.classList.contains("active")) {
-    audioRepeatBtn.classList.add("active");
-  } else {
-    audioRepeatBtn.classList.remove("active");
-  }
-});
+// audioRepeatBtn.addEventListener("click", () => {
+//   if (!audioRepeatBtn.classList.contains("active")) {
+//     audioRepeatBtn.classList.add("active");
+//   } else {
+//     audioRepeatBtn.classList.remove("active");
+//   }
+// });
 
 /**
  * audio text
