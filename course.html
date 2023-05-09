@@ -257,6 +257,48 @@
     <!-- overlay -->
     <div class="overlay" data-overlay></div>
 
+    <!-- developer popup -->
+    <div class="dev__popup modal" id="modalDev">
+      <div class="dev__popup__header">
+        <h3>Contact <span class="has-color">me</span></h3>
+        <button class="btn__close__modalDev" data-close-modal>
+          <i class="fa fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="container">
+        <ul class="social__links">
+          <li>
+            <a href="https://twitter.com/shahid_a5" rel="noreferrer"
+              ><i class="fa fa-twitter"></i
+            ></a>
+          </li>
+          <li>
+            <a href="https://www.facebook.com/shahidkhan119/" rel="noreferrer"
+              ><i class="fa fa-facebook"></i
+            ></a>
+          </li>
+          <li>
+            <a href="https://www.instagram.com/shahidkhan_a5/" rel="noreferrer"
+              ><i class="fa fa-instagram"></i
+            ></a>
+          </li>
+          <li class="btn__whatsapp">
+            <a href="" rel="noreferrer"><i class="fa fa-whatsapp"></i></a>
+          </li>
+          <li>
+            <a href="" rel="noreferrer"><i class="fa fa-github"></i></a>
+          </li>
+        </ul>
+        <div class="input__field">
+          <div class="input">
+            <input type="text" class="mob__number" value="+93783073074" />
+            <i class="fa-regular fa-clipboard copy__mob__number"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- footer -->
     <section class="footer">
       <div class="footer__container">
@@ -275,12 +317,13 @@
           <p>
             Designed and Developed with
             <i class="fa fa-heart" style="color: red"></i> by:
-            <a href="">Shahid Ullah (Safi)</a>
+            <button data-modal-open="#modalDev" class="btn__dev">
+              Shahid Ullah (Safi)
+            </button>
           </p>
         </div>
       </div>
     </section>
-
     <!-- font awesome -->
     <script
       src="https://kit.fontawesome.com/1daeea735e.js"
