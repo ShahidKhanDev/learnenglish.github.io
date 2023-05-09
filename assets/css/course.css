@@ -500,9 +500,12 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  width: 100%;
+  max-width: 94%;
+  text-align: center;
 }
 
-.text__copy {
+.text__message {
   position: fixed;
   top: 0;
   left: 50%;
@@ -517,11 +520,11 @@
   transition: 0.25s ease-in-out;
 }
 
-.text__copy.active {
+.text__message.active {
   transform: translateX(-50%) translateY(0%);
 }
 
-.text__copy i {
+.text__message i {
   margin-right: 0.5rem;
 }
 
@@ -553,6 +556,7 @@
 
   .course__lessons__container {
     grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
+    margin-bottom: 1rem;
   }
 
   .course__lessons__container .lesson__card {

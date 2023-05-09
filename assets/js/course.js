@@ -13,7 +13,10 @@ const audioTextTitle = document.querySelector(".aud__text .text .title");
 const audioTextCopyBtn = document.querySelector(
   ".aud__text .copy__aud__text__btn"
 );
-const audioTextCopy = document.querySelector(".text__copy");
+const audioTextDownloadBtn = document.querySelector(
+  ".aud__text .download__aud__text__btn"
+);
+const audioTextMessage = document.querySelector(".text__message");
 const audioTextOpenBtn = document.querySelector(".aud__text__open__btn");
 const audioTextCloseBtn = document.querySelector(".aud__text__close__btn");
 const audioTextOverlay = document.querySelector(".aud__text__overlay");
@@ -173,7 +176,6 @@ audioSharePopupBtn.addEventListener("click", () => {
 });
 
 audioPlayMasterBtn.addEventListener("click", () => {
-  // music.paused || music.currentTime <= 0 ? music.play() : music.pause();
   music.paused || music.currentTime <= 0 ? playMusic() : pauseMusic();
 });
 
@@ -199,15 +201,16 @@ music.addEventListener("timeupdate", (e) => {
 
   if (isNaN(duration)) {
     audioEndTime.textContent = "0:00";
-  }
-  // music end time
-  let min = Math.floor(duration / 60);
-  let sec = Math.floor(duration % 60);
+  } else {
+    // music end time
+    let min = Math.floor(duration / 60);
+    let sec = Math.floor(duration % 60);
 
-  if (sec < 10) {
-    sec = `0${sec}`;
+    if (sec < 10) {
+      sec = `0${sec}`;
+    }
+    audioEndTime.textContent = `${min}:${sec}`;
   }
-  audioEndTime.textContent = `${min}:${sec}`;
 
   // music start Time
   let min1 = Math.floor(currentTime / 60);
@@ -369,6 +372,11 @@ function createLessonCards(data) {
           card.classList.remove("active");
         });
 
+        // active the current card
+        card.classList.add("active");
+        overlay.classList.add("show");
+        lessonPopupElem.classList.add("active");
+
         // getting card id
         const cardId = card.dataset.id;
 
@@ -381,20 +389,19 @@ function createLessonCards(data) {
         lessonPopupCategoryHead.innerHTML = lessonCategory;
         lessonPopupNameTitle.innerHTML = lessonTitle;
 
+        // create an attribute for the audio text div
+        audioText.setAttribute("data-text-title", lessonTitle);
+
         // getting the audio src from the card
         const audioSrc = card.dataset.audioSrc;
         lessonPopupAudUrl.innerHTML = audioSrc;
         // passing this to the function generateAudioText()
         lessonPopupId.innerHTML = cardId;
 
-        card.classList.add("active");
-        overlay.classList.add("show");
-        lessonPopupElem.classList.add("active");
-
         // when clicked on overlay
         overlay.addEventListener("click", (e) => {
           if (e.target === overlay) {
-            card.classList.remove("active");
+            // card.classList.remove("active");
             overlay.classList.remove("show");
             lessonCardPopup.classList.remove("active");
             mobMenu.classList.remove("active");
@@ -411,7 +418,7 @@ function createLessonCards(data) {
       });
     });
 
-    // when clicking on play button of popup
+    // playing the audio
     audioPlayPopupBtn.addEventListener("click", () => {
       audioPlayer.classList.add("active");
       overlay.classList.remove("show");
@@ -429,18 +436,18 @@ function createLessonCards(data) {
 
       // changing the music src to the audio url
       music.src = `https://cdn.sanity.io/files/${projectId}/${dataset}/${audioURL}`;
-      audioPlayMasterBtn.click();
+      // play the audio
+      // audioPlayMasterBtn.click();
 
       // generating the audio text from sanity.io using function
       generateAudText(data, lessonPopupId);
     });
-  } else {
-    messageElem.style.display = "block";
-    messageElem.innerHTML = `Oops! No lessons found for ${getCourseName(
-      courseId
-    ).toUpperCase()}.`;
-    messageElem.classList.add("error");
   }
+  messageElem.style.display = "block";
+  messageElem.innerHTML = `Oops! No lessons found for ${getCourseName(
+    courseId
+  ).toUpperCase()}.`;
+  messageElem.classList.add("error");
 }
 
 function addZero(num) {
@@ -451,8 +458,6 @@ function getAudioPath(url) {
   return url;
 }
 
-function copyAudText() {}
-
 // generate the audio text from the data and LessonId Passed
 function generateAudText(data, cardId) {
   cardId = cardId.innerText;
@@ -462,8 +467,8 @@ function generateAudText(data, cardId) {
     let lessonId = lessonData[i]._id;
     if (cardId == lessonId) {
       if (lessonData[i].hasOwnProperty("richText")) {
-        audioTextCopyBtn.style.opacity = "1";
-        audioTextCopyBtn.style.visibility = "visible";
+        audioTextCopyBtn.style.display = "inline";
+        audioTextDownloadBtn.style.display = "inline";
 
         const textHeadingStyle = lessonData[i].richText[0].style;
         const textHeading = lessonData[i].richText[0].children[0].text;
@@ -483,15 +488,16 @@ function generateAudText(data, cardId) {
       } else {
         audioTextElem.innerHTML =
           "<div class='no__text'>Oops! Sorry, No text available.</div>";
-
-        audioTextCopyBtn.style.opacity = "0";
-        audioTextCopyBtn.style.visibility = "hidden";
+        audioTextCopyBtn.style.display = "none";
+        audioTextDownloadBtn.style.display = "none";
       }
     }
   }
 }
 
-// copy audio text
+/**
+ * copy audio text to clipboard
+ */
 audioTextCopyBtn.addEventListener("click", () => {
   let allTexts = [];
 
@@ -503,11 +509,77 @@ audioTextCopyBtn.addEventListener("click", () => {
   }
 
   navigator.clipboard.writeText(allTexts.join("\n"));
-  audioTextCopy.classList.add("active");
+  audioTextMessage.classList.add("active");
+  audioTextMessage.innerHTML =
+    '<p><i class="fa fa-check"></i> Copied successfully!</p>';
 
   setTimeout(() => {
-    audioTextCopy.classList.remove("active");
+    audioTextMessage.classList.remove("active");
   }, 800);
 });
+
+/**
+ * download audio text as .txt file
+ */
+
+audioTextDownloadBtn.addEventListener("click", () => {
+  // Define the text you want to write to the file
+  // const text = "Hello, world! This is some text in a .txt file.";
+
+  const textTitle =
+    audioTextDownloadBtn.parentElement.parentElement.parentElement.getAttribute(
+      "data-text-title"
+    );
+
+  const totalText =
+    audioTextDownloadBtn.parentElement.parentElement.parentElement.children[1]
+      .childElementCount;
+
+  const text =
+    audioTextDownloadBtn.parentElement.parentElement.parentElement.children[1]
+      .children;
+
+  // creating an empty array to store all the text
+  let textData = [];
+  for (let i = 0; i < totalText; i++) {
+    // pushing all the texts from p tags to the array
+    textData.push(text[i].innerText);
+  }
+
+  // download the text
+  downloadTextFile(textData.join("\n"), textTitle);
+});
+
+function downloadTextFile(text, filename) {
+  // Create a new Blob object with the text and set the MIME type to "text/plain"
+  const blob = new Blob([text], { type: "text/plain" });
+
+  // Create a URL object for the blob
+  const url = URL.createObjectURL(blob);
+
+  // Create a new link element
+  const link = document.createElement("a");
+
+  // Set the link's href attribute to the URL object
+  link.href = url;
+
+  // Set the link's download attribute to specify the file name
+  link.download = filename;
+
+  // Programmatically click the link to trigger the download
+  document.body.appendChild(link);
+  link.click();
+
+  // Clean up by revoking the URL object
+  URL.revokeObjectURL(url);
+
+  audioTextMessage.classList.add("active");
+  audioTextMessage.innerHTML =
+    '<p><i class="fa fa-check"></i> Downloaded successfully!</p>';
+
+  setTimeout(() => {
+    audioTextMessage.classList.remove("active");
+  }, 1000);
+}
 
 window.addEventListener("DOMContentLoaded", getLessons);
