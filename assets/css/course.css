@@ -342,13 +342,8 @@
   color: var(--white);
 }
 
-.lesson__popup .action__btns li.btn__share {
+.lesson__popup .action__btns li.btn__copy__link {
   background-color: #34495e;
-  color: var(--white);
-}
-
-.lesson__popup .action__btns li.btn__conversation {
-  background-color: #1abc9c;
   color: var(--white);
 }
 

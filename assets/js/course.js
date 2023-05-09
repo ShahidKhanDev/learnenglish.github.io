@@ -16,7 +16,6 @@ const audioTextCopyBtn = document.querySelector(
 const audioTextDownloadBtn = document.querySelector(
   ".aud__text .download__aud__text__btn"
 );
-const audioTextMessage = document.querySelector(".text__message");
 const audioTextOpenBtn = document.querySelector(".aud__text__open__btn");
 const audioTextCloseBtn = document.querySelector(".aud__text__close__btn");
 const audioTextOverlay = document.querySelector(".aud__text__overlay");
@@ -127,7 +126,9 @@ const audioPlayPopupBtn = document.querySelector(".lesson__popup .btn__play");
 const audioDownloadPopupBtn = document.querySelector(
   ".lesson__popup .btn__download"
 );
-const audioSharePopupBtn = document.querySelector(".lesson__popup .btn__share");
+const audioCopyLinkPopupBtn = document.querySelector(
+  ".lesson__popup .btn__copy__link"
+);
 const audioPlayMasterBtn = document.querySelector(".play__audio__btn");
 const audioRepeatBtn = document.querySelector(".repeat__audio__btn");
 const audioCurrTime = document.querySelector(".aud__current__time");
@@ -170,9 +171,27 @@ audioDownloadPopupBtn.addEventListener("click", () => {
   }, 200);
 });
 
-// share the audio
-audioSharePopupBtn.addEventListener("click", () => {
-  console.log("sharing audio");
+// copy the audio link
+audioCopyLinkPopupBtn.addEventListener("click", () => {
+  const audioSrc = lessonPopupAudUrl.innerHTML.split("file-")[1].split("-")[0];
+  const audioExt = lessonPopupAudUrl.innerHTML.split("file-")[1].split("-")[1];
+  // getting the exact audio url
+  const audioURL = `${audioSrc}.${audioExt}`;
+
+  // create the share link
+  let shareLink = `https://cdn.sanity.io/files/${projectId}/${dataset}/${audioURL}`;
+
+  // copy the share link to the clipboard
+  navigator.clipboard.writeText(shareLink);
+
+  msgPopup.classList.add("active");
+
+  msgPopup.innerHTML =
+    '<p><i class="fa fa-check"></i> Link copied successfully!</p>';
+
+  setTimeout(() => {
+    msgPopup.classList.remove("active");
+  }, 800);
 });
 
 audioPlayMasterBtn.addEventListener("click", () => {
@@ -505,12 +524,12 @@ audioTextCopyBtn.addEventListener("click", () => {
   }
 
   navigator.clipboard.writeText(allTexts.join("\n"));
-  audioTextMessage.classList.add("active");
-  audioTextMessage.innerHTML =
+  msgPopup.classList.add("active");
+  msgPopup.innerHTML =
     '<p><i class="fa fa-check"></i> Copied successfully!</p>';
 
   setTimeout(() => {
-    audioTextMessage.classList.remove("active");
+    msgPopup.classList.remove("active");
   }, 800);
 });
 
@@ -569,12 +588,12 @@ function downloadTextFile(text, filename) {
   // Clean up by revoking the URL object
   URL.revokeObjectURL(url);
 
-  audioTextMessage.classList.add("active");
-  audioTextMessage.innerHTML =
+  msgPopup.classList.add("active");
+  msgPopup.innerHTML =
     '<p><i class="fa fa-check"></i> Downloaded successfully!</p>';
 
   setTimeout(() => {
-    audioTextMessage.classList.remove("active");
+    msgPopup.classList.remove("active");
   }, 1000);
 }
 
