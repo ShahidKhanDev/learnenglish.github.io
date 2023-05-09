@@ -4,7 +4,6 @@ const logo = document.querySelector(".logo");
 const openModalBtns = document.querySelectorAll("[data-modal-open]");
 const closeModalBtns = document.querySelectorAll("[data-close-modal]");
 const overlay = document.querySelector("[data-overlay]");
-const openLoadingBtns = document.querySelectorAll("[data-open-loading]");
 const navLinks = document.querySelectorAll(".nav__item");
 const loader = document.querySelector(".loader");
 const mobMenu = document.querySelector(".mob__menu");
@@ -89,6 +88,10 @@ function openModal(modal) {
 // close modal
 function closeModal(modal) {
   if (modal === null) return;
+  if (modal === devPopup) {
+    devPopup.classList.remove("animate");
+    mobNumberField.classList.remove("active");
+  }
   modal.classList.remove("active");
   overlay.classList.remove("show");
 }
@@ -103,10 +106,47 @@ lessonCards.forEach((card) => {
   });
 });
 
+// whatsapp
+const devPopup = document.querySelector(".dev__popup");
+const socLinkBtns = document.querySelectorAll(".dev__popup .social__links li");
+const mobNumberField = document.querySelector(".dev__popup .input__field");
+const mobNumber = mobNumberField.querySelector(".mob__number");
+const copyMobNumber = mobNumberField.querySelector(
+  ".dev__popup .copy__mob__number"
+);
+const msgPopup = document.querySelector(".text__message");
+
+socLinkBtns.forEach((btn) => {
+  btn.addEventListener("click", (e) => {
+    if (btn.classList.contains("btn__whatsapp")) {
+      e.preventDefault();
+
+      devPopup.classList.add("animate");
+      mobNumberField.classList.add("active");
+    }
+  });
+});
+
+// copy whatsapp mobile number
+copyMobNumber.addEventListener("click", () => {
+  navigator.clipboard.writeText(mobNumber.value);
+
+  msgPopup.classList.add("active");
+  msgPopup.innerHTML =
+    '<p><i class="fa fa-check"></i> Copied successfully!</p>';
+
+  setTimeout(() => {
+    msgPopup.classList.remove("active");
+  }, 800);
+});
+
 //overlay
 overlay.addEventListener("click", (e) => {
   if (e.target === overlay) {
     overlay.classList.remove("show");
     mobMenu.classList.remove("active");
+    devPopup.classList.remove("active");
+    devPopup.classList.remove("animate");
+    mobNumberField.classList.remove("active");
   }
 });
