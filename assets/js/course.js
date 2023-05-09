@@ -462,7 +462,6 @@ function getAudioPath(url) {
 function generateAudText(data, cardId) {
   cardId = cardId.innerText;
   const lessonData = data.result;
-  audioTextElem.innerHTML = "";
   for (let i = 0; i < lessonData.length; i++) {
     let lessonId = lessonData[i]._id;
     if (cardId == lessonId) {
@@ -472,18 +471,15 @@ function generateAudText(data, cardId) {
 
         const textHeadingStyle = lessonData[i].richText[0].style;
         const textHeading = lessonData[i].richText[0].children[0].text;
-
         audioTextTitle.innerHTML = `<${textHeadingStyle}>${textHeading}</${textHeadingStyle}>`;
 
         let richText = lessonData[i].richText;
         richText = Object.values(richText);
-
+        console.log(audioTextTitle);
         for (let j = 1; j < richText.length; j++) {
-          let textBody = document.createElement("p");
-          textBody.innerHTML = richText[j].children[0].text;
-          textBody.classList.add("text__body");
+          let textBody = `<p class="text__body">${richText[j].children[0].text}</p>`;
 
-          audioTextElem.appendChild(textBody);
+          audioTextElem.insertAdjacentHTML("beforeend", textBody);
         }
       } else {
         audioTextElem.innerHTML =
