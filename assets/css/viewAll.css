@@ -1,0 +1,19 @@
+:root {
+  --ff-poppins: "Poppins", sans-serif;
+  --ff-opensans: "Open Sans", sans-serif;
+  --ff-lobster: "Lobster Two", cursive;
+
+  --white: #fff;
+  --eerie-black: #1b1d20;
+  --chinese-black: #101112;
+  --blue-crayola: #206ee9;
+
+  --messenger-clr: #3274f7;
+}
+
+.viewAll__hero__section {
+  background: url("/assets/images/bg.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
