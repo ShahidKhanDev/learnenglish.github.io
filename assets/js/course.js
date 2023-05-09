@@ -437,7 +437,7 @@ function createLessonCards(data) {
       // changing the music src to the audio url
       music.src = `https://cdn.sanity.io/files/${projectId}/${dataset}/${audioURL}`;
       // play the audio
-      // audioPlayMasterBtn.click();
+      audioPlayMasterBtn.click();
 
       // generating the audio text from sanity.io using function
       generateAudText(data, lessonPopupId);
