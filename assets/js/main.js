@@ -91,6 +91,7 @@ function closeModal(modal) {
   if (modal === devPopup) {
     devPopup.classList.remove("animate");
     mobNumberField.classList.remove("active");
+    overlay.style.transition = "0.25s ease-in-out 0.15s";
   }
   modal.classList.remove("active");
   overlay.classList.remove("show");
