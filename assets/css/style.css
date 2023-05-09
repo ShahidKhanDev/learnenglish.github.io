@@ -763,11 +763,19 @@ html::-webkit-scrollbar-thumb {
   font-weight: 500;
 }
 
-.dev__popup .input i {
+.dev__popup .input .copy__mob__number {
   position: absolute;
   top: 50%;
-  right: 2%;
+  right: 0.2rem;
   transform: translateY(-50%);
+  cursor: pointer;
+  width: 1.8rem;
+  height: calc(100% - 0.4rem);
+  background-color: var(--chinese-black);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .text__message {
