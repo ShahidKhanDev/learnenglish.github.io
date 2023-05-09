@@ -339,6 +339,11 @@ html::-webkit-scrollbar-thumb {
 }
 
 .hero__section .message__us {
+  display: none;
+}
+
+.hero__section .message__us,
+.hero__section .developer__btn {
   position: absolute;
   bottom: 2rem;
   right: 3rem;
@@ -358,13 +363,16 @@ html::-webkit-scrollbar-thumb {
   display: none;
 }
 
-.hero__section .message__us:hover {
+.hero__section .message__us:hover,
+.hero__section .developer__btn:hover {
   animation-play-state: paused;
 }
 
-.hero__section .message__us i {
+.hero__section .message__us i,
+.hero__section .developer__btn i {
   color: var(--messenger-clr);
-  font-size: 2.5rem;
+  /* font-size: 2.5rem; */
+  font-size: 1.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -372,7 +380,7 @@ html::-webkit-scrollbar-thumb {
 
 @keyframes bounce {
   from {
-    transform: translateY(3px);
+    transform: translateY(2px);
   }
   to {
     transform: translateY(0);
