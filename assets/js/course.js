@@ -16,6 +16,9 @@ const audioTextCopyBtn = document.querySelector(
 const audioTextDownloadBtn = document.querySelector(
   ".aud__text .download__aud__text__btn"
 );
+const audioTextPdfDownloadBtn = document.querySelector(
+  ".aud__text .download__aud__text__pdf__btn"
+);
 const audioTextOpenBtn = document.querySelector(".aud__text__open__btn");
 const audioTextCloseBtn = document.querySelector(".aud__text__close__btn");
 const audioTextOverlay = document.querySelector(".aud__text__overlay");
@@ -26,12 +29,6 @@ const courseId = localStorage.getItem("courseId");
 /* courseId = 1 => Vocabulary, courseId = 2 => Grammar
    courseId = 3 => Reading, courseId = 4 => Conversation
 */
-
-if (document.readyState == "complete") {
-  setTimeout(() => {
-    loading.classList.remove("show");
-  }, 2000);
-}
 
 courseHeroBg.style.background = "url('/assets/images/bg.jpg')";
 courseHeroBg.style.backgroundRepeat = "no-repeat";
@@ -74,16 +71,6 @@ if (courseId == 1) {
   `;
 
   courseHeroText.innerHTML = courseText;
-}
-
-function generateHeroText(course) {
-  let courseText = `
-    <h1 class="bg__text bg__text__course">
-    <span>${course}</span><img src="./assets/images/${course}.png" /><span class="has-color">tion</span>
-    </h1>
-    <p class="sm__text">anytime and anywhere</p>
-    <a href="#courses__section" class="btn__explore">Explore Courses</a>`;
-  return (courseHeroText.innerHTML = courseText);
 }
 
 // get course name from the course Id
@@ -135,22 +122,6 @@ const audioCurrTime = document.querySelector(".aud__current__time");
 const audioEndTime = document.querySelector(".aud__end__time");
 
 let music = new Audio("");
-
-// audioPlayPopupBtn.addEventListener("click", () => {
-//   audioPlayer.classList.add("active");
-//   overlay.classList.remove("show");
-//   lessonCardPopup.classList.remove("active");
-
-//   const audioSrc = lessonPopupAudUrl.innerHTML.split("file-")[1].split("-")[0];
-//   const audioExt = lessonPopupAudUrl.innerHTML.split("file-")[1].split("-")[1];
-
-//   // getting the exact audio url
-//   const audioURL = `${audioSrc}.${audioExt}`;
-
-//   // changing the music src to the audio url
-//   music.src = `https://cdn.sanity.io/files/${projectId}/${dataset}/${audioURL}`;
-//   audioPlayMasterBtn.click();
-// });
 
 // download audio
 audioDownloadPopupBtn.addEventListener("click", () => {
@@ -314,22 +285,6 @@ audioProgressbar.addEventListener("input", () => {
     audioProgressbar.style.background =
       "linear-gradient(90deg, #1b1d20 " + percent + "%, #e2e2e2 0%)";
   });
-});
-
-/**
- * audio text
- */
-
-audioTextOpenBtn.addEventListener("click", () => {
-  audioText.classList.toggle("active");
-  audioTextOpenBtn.classList.toggle("active");
-  audioTextOverlay.classList.toggle("active");
-});
-
-audioTextCloseBtn.addEventListener("click", () => {
-  audioText.classList.remove("active");
-  audioTextOpenBtn.classList.remove("active");
-  audioTextOverlay.classList.remove("active");
 });
 
 /**
@@ -500,6 +455,22 @@ function getAudioPath(url) {
   return url;
 }
 
+/**
+ * audio text
+ */
+
+audioTextOpenBtn.addEventListener("click", () => {
+  audioText.classList.toggle("active");
+  audioTextOpenBtn.classList.toggle("active");
+  audioTextOverlay.classList.toggle("active");
+});
+
+audioTextCloseBtn.addEventListener("click", () => {
+  audioText.classList.remove("active");
+  audioTextOpenBtn.classList.remove("active");
+  audioTextOverlay.classList.remove("active");
+});
+
 // generate the audio text from the data and LessonId Passed
 function generateAudText(data, cardId) {
   cardId = cardId.innerText;
@@ -532,9 +503,6 @@ function generateAudText(data, cardId) {
   }
 }
 
-/**
- * copy audio text to clipboard
- */
 audioTextCopyBtn.addEventListener("click", () => {
   let allTexts = [];
 
@@ -555,14 +523,7 @@ audioTextCopyBtn.addEventListener("click", () => {
   }, 800);
 });
 
-/**
- * download audio text as .txt file
- */
-
 audioTextDownloadBtn.addEventListener("click", () => {
-  // Define the text you want to write to the file
-  // const text = "Hello, world! This is some text in a .txt file.";
-
   const textTitle =
     audioTextDownloadBtn.parentElement.parentElement.parentElement.getAttribute(
       "data-text-title"
@@ -587,6 +548,32 @@ audioTextDownloadBtn.addEventListener("click", () => {
   downloadTextFile(textData.join("\n"), textTitle);
 });
 
+audioTextPdfDownloadBtn.addEventListener("click", () => {
+  const textTitle =
+    audioTextDownloadBtn.parentElement.parentElement.parentElement.getAttribute(
+      "data-text-title"
+    );
+
+  const totalText =
+    audioTextDownloadBtn.parentElement.parentElement.parentElement.children[1]
+      .childElementCount;
+
+  const text =
+    audioTextDownloadBtn.parentElement.parentElement.parentElement.children[1]
+      .children;
+
+  // creating an empty array to store all the text
+  let textData = [];
+  for (let i = 0; i < totalText; i++) {
+    // pushing all the texts from p tags to the array
+    textData.push(text[i].innerText);
+  }
+
+  // download the text
+  downloadTextPDfFile(textData.join("\n"), textTitle);
+});
+
+// download text as .txt file
 function downloadTextFile(text, filename) {
   // Create a new Blob object with the text and set the MIME type to "text/plain"
   const blob = new Blob([text], { type: "text/plain" });
@@ -617,6 +604,49 @@ function downloadTextFile(text, filename) {
   setTimeout(() => {
     msgPopup.classList.remove("active");
   }, 1000);
+}
+
+// download audio text as pdf file
+function downloadTextPDfFile(text, filename) {
+  const { jsPDF } = window.jspdf;
+  // Create a new PDF document
+  const doc = new jsPDF();
+
+  //   Set the font size and line height
+  const fontSize = 12;
+  const lineHeight = 0.8 * fontSize;
+
+  // Set the margins
+  const pageWidth = doc.internal.pageSize.getWidth();
+  const pageHeight = doc.internal.pageSize.getHeight();
+  const inch = 20;
+  const margin = 0.5 * inch;
+  // Set the position to start adding text
+  let x = margin;
+  let y = margin;
+
+  // Set the text for the document
+  // Split the text into an array of lines that fit within the page width
+  const lines = doc.splitTextToSize(text, pageWidth - 2 * margin);
+
+  // Loop through the lines of text and add pages as needed
+  for (let i = 0; i < lines.length; i++) {
+    // If the current position is close to the bottom of the page, add a new page
+    if (y > pageHeight - margin) {
+      doc.addPage();
+      x = margin;
+      y = margin;
+    }
+
+    // Add the current line of text to the document
+    doc.text(lines[i], x, y);
+
+    // Move the position to the next line
+    y += lineHeight;
+  }
+
+  // Save the document
+  doc.save(`${filename}.pdf`);
 }
 
 window.addEventListener("DOMContentLoaded", getLessons);

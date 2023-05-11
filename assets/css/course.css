@@ -601,6 +601,12 @@
   }
 }
 
+@media (max-width: 600px) {
+  .aud__text__btns button span {
+    display: none;
+  }
+}
+
 @media (max-width: 475px) {
   .hero__section .hero__text .bg__text__course span {
     font-size: 3.5rem;

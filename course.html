@@ -21,6 +21,12 @@
       href="https://fonts.googleapis.com/css2?family=Lobster+Two:ital,wght@0,400;0,700;1,400;1,700&family=Open+Sans:wght@300;400;500;600;700;800&family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
+
+    <!-- font awesome -->
+    <script
+      src="https://kit.fontawesome.com/1daeea735e.js"
+      crossorigin="anonymous"
+    ></script>
   </head>
   <body>
     <!-- header -->
@@ -229,11 +235,18 @@
       <div class="aud__text__btns">
         <div class="left__row">
           <button class="copy__aud__text__btn">
-            <i class="fa-regular fa-clipboard"></i> Copy Text
+            <i class="fa-regular fa-clipboard"></i>
+            <span>Copy Text</span>
           </button>
 
           <button class="download__aud__text__btn">
-            <i class="fa fa-arrow-down"></i> Download Text
+            <i class="fa-regular fa-file-lines"></i>
+            <span>Download Text</span>
+          </button>
+
+          <button class="download__aud__text__pdf__btn">
+            <i class="fa-regular fa-file-pdf"></i>
+            <span>Download PDF</span>
           </button>
         </div>
 
@@ -326,11 +339,8 @@
       </div>
     </section>
 
-    <!-- font awesome -->
-    <script
-      src="https://kit.fontawesome.com/1daeea735e.js"
-      crossorigin="anonymous"
-    ></script>
+    <!-- jspdf -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <!-- custome js -->
     <script src="./assets/js/main.js"></script>
     <script src="./assets/js/course.js"></script>
