@@ -605,6 +605,10 @@
   .aud__text__btns button span {
     display: none;
   }
+
+  .aud__text__btns button i {
+    font-size: 1.2rem;
+  }
 }
 
 @media (max-width: 475px) {
