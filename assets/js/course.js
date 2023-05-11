@@ -8,7 +8,7 @@ const courseLessonCards = document.querySelectorAll(
 
 // audio text
 const audioText = document.querySelector(".aud__text");
-const audioTextElem = audioText.querySelector(".text");
+const audioTextElem = audioText.querySelector(".text .main__text");
 const audioTextTitle = document.querySelector(".aud__text .text .title");
 const audioTextCopyBtn = document.querySelector(
   ".aud__text .copy__aud__text__btn"
@@ -475,12 +475,15 @@ audioTextCloseBtn.addEventListener("click", () => {
 function generateAudText(data, cardId) {
   cardId = cardId.innerText;
   const lessonData = data.result;
+  audioTextElem.innerHTML = "";
+  audioTextTitle.innerHTML = "";
   for (let i = 0; i < lessonData.length; i++) {
     let lessonId = lessonData[i]._id;
     if (cardId == lessonId) {
       if (lessonData[i].hasOwnProperty("richText")) {
         audioTextCopyBtn.style.display = "inline";
         audioTextDownloadBtn.style.display = "inline";
+        audioTextPdfDownloadBtn.style.display = "inline";
 
         const textHeadingStyle = lessonData[i].richText[0].style;
         const textHeading = lessonData[i].richText[0].children[0].text;
@@ -498,6 +501,7 @@ function generateAudText(data, cardId) {
           "<div class='no__text'>Oops! Sorry, No text available.</div>";
         audioTextCopyBtn.style.display = "none";
         audioTextDownloadBtn.style.display = "none";
+        audioTextPdfDownloadBtn.style.display = "none";
       }
     }
   }
