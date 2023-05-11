@@ -117,10 +117,9 @@ const lessonPopupNameTitle = document.querySelector(
   ".lesson__popup .lesson__name__title"
 );
 
-// https://cdn.sanity.io/files/rfaksjo9/production/11042272f71ca93cc6c9b04901f06584d8dfc107.mp3
-
 // audio player
 const audioPlayer = document.querySelector(".aud__player");
+const audioMiniPlayer = document.querySelector(".aud__mini__player");
 const audioProgressbar = document.querySelector(".aud__progressbar");
 const audioPlayPopupBtn = document.querySelector(".lesson__popup .btn__play");
 const audioDownloadPopupBtn = document.querySelector(
@@ -131,9 +130,9 @@ const audioCopyLinkPopupBtn = document.querySelector(
 );
 const audioPlayMasterBtn = document.querySelector(".play__audio__btn");
 const audioRepeatBtn = document.querySelector(".repeat__audio__btn");
+const audioHideBtn = document.querySelector(".hide__audio__btn");
 const audioCurrTime = document.querySelector(".aud__current__time");
 const audioEndTime = document.querySelector(".aud__end__time");
-// const progressFull = document.querySelector(".progress__full2");
 
 let music = new Audio("");
 
@@ -194,6 +193,28 @@ audioCopyLinkPopupBtn.addEventListener("click", () => {
   }, 800);
 });
 
+// hide the player
+audioHideBtn.addEventListener("click", () => {
+  if (!audioHideBtn.classList.contains("active")) {
+    audioHideBtn.classList.add("active");
+    audioPlayer.classList.remove("active");
+    audioMiniPlayer.classList.add("active");
+  } else {
+    audioHideBtn.classList.remove("active");
+    audioPlayer.classList.add("active");
+    audioMiniPlayer.classList.remove("active");
+  }
+});
+
+// audio player when it's hidden and clicked
+audioMiniPlayer.addEventListener("click", () => {
+  if (audioMiniPlayer.classList.contains("active")) {
+    audioMiniPlayer.classList.remove("active");
+    audioHideBtn.classList.remove("active");
+    audioPlayer.classList.add("active");
+  }
+});
+
 audioPlayMasterBtn.addEventListener("click", () => {
   music.paused || music.currentTime <= 0 ? playMusic() : pauseMusic();
 });
@@ -202,12 +223,15 @@ function playMusic() {
   music.play();
   audioPlayMasterBtn.classList.add("active");
   audioPlayMasterBtn.firstElementChild.classList.replace("fa-play", "fa-pause");
+
+  audioMiniPlayer.classList.remove("animate");
 }
 
 function pauseMusic() {
   music.pause();
   audioPlayMasterBtn.classList.remove("active");
   audioPlayMasterBtn.firstElementChild.classList.replace("fa-pause", "fa-play");
+  audioMiniPlayer.classList.add("animate");
 }
 
 music.addEventListener("loadstart", () => {
@@ -291,15 +315,6 @@ audioProgressbar.addEventListener("input", () => {
       "linear-gradient(90deg, #1b1d20 " + percent + "%, #e2e2e2 0%)";
   });
 });
-
-// repeat audio
-// audioRepeatBtn.addEventListener("click", () => {
-//   if (!audioRepeatBtn.classList.contains("active")) {
-//     audioRepeatBtn.classList.add("active");
-//   } else {
-//     audioRepeatBtn.classList.remove("active");
-//   }
-// });
 
 /**
  * audio text
@@ -443,6 +458,14 @@ function createLessonCards(data) {
       overlay.classList.remove("show");
       lessonCardPopup.classList.remove("active");
 
+      // remove the hide and animate class from the audio player
+      audioHideBtn.classList.remove("active");
+      audioPlayer.classList.remove("hide");
+      audioPlayer.classList.remove("animate");
+      setTimeout(() => {
+        audioPlayer.classList.add("active");
+      }, 200);
+
       const audioSrc = lessonPopupAudUrl.innerHTML
         .split("file-")[1]
         .split("-")[0];
@@ -494,7 +517,6 @@ function generateAudText(data, cardId) {
 
         let richText = lessonData[i].richText;
         richText = Object.values(richText);
-        console.log(audioTextTitle);
         for (let j = 1; j < richText.length; j++) {
           let textBody = `<p class="text__body">${richText[j].children[0].text}</p>`;
 

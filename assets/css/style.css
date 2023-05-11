@@ -311,10 +311,10 @@ html::-webkit-scrollbar-thumb {
   font-family: var(--ff-poppins);
   font-weight: 500;
   font-size: 0.85rem;
-  padding: 0.8rem 1rem;
+  padding: 0.8rem 1.3rem;
   cursor: pointer;
   position: relative;
-  border: 2px solid var(--white);
+  /* border: 2px solid var(--white); */
   border-radius: 32px;
   color: var(--white);
   background: var(--blue-crayola);
@@ -344,7 +344,7 @@ html::-webkit-scrollbar-thumb {
 
 .hero__section .message__us,
 .hero__section .developer__btn {
-  position: absolute;
+  position: fixed;
   bottom: 2rem;
   right: 3rem;
   background-color: var(--white);
@@ -355,8 +355,10 @@ html::-webkit-scrollbar-thumb {
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   animation-play-state: running;
   animation: bounce 0.9s infinite alternate ease;
+  z-index: 11;
 }
 
 .hero__section .btn__message__us {
@@ -371,7 +373,6 @@ html::-webkit-scrollbar-thumb {
 .hero__section .message__us i,
 .hero__section .developer__btn i {
   color: var(--messenger-clr);
-  /* font-size: 2.5rem; */
   font-size: 1.5rem;
   display: flex;
   align-items: center;
@@ -954,6 +955,10 @@ html::-webkit-scrollbar-thumb {
     position: absolute;
     top: -1rem;
     left: -0.5rem;
+  }
+
+  .text__message {
+    width: 100%;
   }
 
   .footer {
